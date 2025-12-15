@@ -1184,7 +1184,7 @@ runGradientFps.Color = ColorSequence.new{
 runGradientFps.Parent = runBtnFps
 
 runBtnFps.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://pastefy.app/AFmk3Btj/raw"))()
+    loadstring(game:HttpGet("https://pastefy.app/WmJoyaBZ/raw"))()
     fpsPopup.Visible = false
 end)
 
