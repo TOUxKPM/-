@@ -862,3 +862,714 @@ touV2Btn.MouseButton1Click:Connect(function()
 end)
 
 -- Popup ความเร็ว (Script ทั่วไป)
+local speedPopup = Instance.new("Frame")
+speedPopup.Size = UDim2.new(0, 400, 0, 250)
+speedPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+speedPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+speedPopup.Visible = false
+speedPopup.Parent = gui
+speedPopup.ZIndex = 10
+
+local speedPopupCorner = Instance.new("UICorner", speedPopup)
+speedPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local speedPopupShadow = Instance.new("ImageLabel")
+speedPopupShadow.BackgroundTransparency = 1
+speedPopupShadow.Image = "rbxassetid://1316045217"
+speedPopupShadow.ImageTransparency = 0.4
+speedPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+speedPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+speedPopupShadow.ZIndex = 9
+speedPopupShadow.Parent = speedPopup
+
+local speedPopupTitle = Instance.new("TextLabel")
+speedPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+speedPopupTitle.BackgroundTransparency = 1
+speedPopupTitle.Text = "ความเร็ว"
+speedPopupTitle.TextColor3 = Color3.fromRGB(255, 100, 0)
+speedPopupTitle.Font = Enum.Font.SourceSansBold
+speedPopupTitle.TextSize = 26
+speedPopupTitle.ZIndex = 11
+speedPopupTitle.Parent = speedPopup
+
+local runBtnSpeed = Instance.new("TextButton")
+runBtnSpeed.Size = UDim2.new(0, 150, 0, 50)
+runBtnSpeed.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnSpeed.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnSpeed.Text = "RUN"
+runBtnSpeed.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnSpeed.Font = Enum.Font.SourceSansBold
+runBtnSpeed.TextSize = 28
+runBtnSpeed.ZIndex = 11
+runBtnSpeed.Parent = speedPopup
+runBtnSpeed.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastefy.app/cCNFO7iL/raw"))()
+    speedPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnSpeed = Instance.new("TextButton")
+cancelBtnSpeed.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnSpeed.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnSpeed.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnSpeed.Text = "ยกเลิก"
+cancelBtnSpeed.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnSpeed.Font = Enum.Font.SourceSansBold
+cancelBtnSpeed.TextSize = 28
+cancelBtnSpeed.ZIndex = 11
+cancelBtnSpeed.Parent = speedPopup
+cancelBtnSpeed.MouseButton1Click:Connect(function()
+    speedPopup.Visible = false
+end)
+
+local closePopupSpeed = Instance.new("TextButton")
+closePopupSpeed.Size = UDim2.new(0, 30, 0, 30)
+closePopupSpeed.Position = UDim2.new(1, -40, 0, 10)
+closePopupSpeed.BackgroundTransparency = 1
+closePopupSpeed.Text = "X"
+closePopupSpeed.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupSpeed.Font = Enum.Font.SourceSansBold
+closePopupSpeed.TextSize = 24
+closePopupSpeed.ZIndex = 11
+closePopupSpeed.Parent = speedPopup
+closePopupSpeed.MouseButton1Click:Connect(function()
+    speedPopup.Visible = false
+end)
+
+speedBtn.MouseButton1Click:Connect(function()
+    speedPopup.Visible = true
+end)
+
+-- Popup กระโดด (Script ทั่วไป)
+local jumpPopup = Instance.new("Frame")
+jumpPopup.Size = UDim2.new(0, 400, 0, 250)
+jumpPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+jumpPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+jumpPopup.Visible = false
+jumpPopup.Parent = gui
+jumpPopup.ZIndex = 10
+
+local jumpPopupCorner = Instance.new("UICorner", jumpPopup)
+jumpPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local jumpPopupShadow = Instance.new("ImageLabel")
+jumpPopupShadow.BackgroundTransparency = 1
+jumpPopupShadow.Image = "rbxassetid://1316045217"
+jumpPopupShadow.ImageTransparency = 0.4
+jumpPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+jumpPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+jumpPopupShadow.ZIndex = 9
+jumpPopupShadow.Parent = jumpPopup
+
+local jumpPopupTitle = Instance.new("TextLabel")
+jumpPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+jumpPopupTitle.BackgroundTransparency = 1
+jumpPopupTitle.Text = "กระโดด"
+jumpPopupTitle.TextColor3 = Color3.fromRGB(100, 255, 100)
+jumpPopupTitle.Font = Enum.Font.SourceSansBold
+jumpPopupTitle.TextSize = 26
+jumpPopupTitle.ZIndex = 11
+jumpPopupTitle.Parent = jumpPopup
+
+local runBtnJump = Instance.new("TextButton")
+runBtnJump.Size = UDim2.new(0, 150, 0, 50)
+runBtnJump.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnJump.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnJump.Text = "RUN"
+runBtnJump.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnJump.Font = Enum.Font.SourceSansBold
+runBtnJump.TextSize = 28
+runBtnJump.ZIndex = 11
+runBtnJump.Parent = jumpPopup
+runBtnJump.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastefy.app/bv5KayX6/raw"))()
+    jumpPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnJump = Instance.new("TextButton")
+cancelBtnJump.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnJump.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnJump.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnJump.Text = "ยกเลิก"
+cancelBtnJump.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnJump.Font = Enum.Font.SourceSansBold
+cancelBtnJump.TextSize = 28
+cancelBtnJump.ZIndex = 11
+cancelBtnJump.Parent = jumpPopup
+cancelBtnJump.MouseButton1Click:Connect(function()
+    jumpPopup.Visible = false
+end)
+
+local closePopupJump = Instance.new("TextButton")
+closePopupJump.Size = UDim2.new(0, 30, 0, 30)
+closePopupJump.Position = UDim2.new(1, -40, 0, 10)
+closePopupJump.BackgroundTransparency = 1
+closePopupJump.Text = "X"
+closePopupJump.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupJump.Font = Enum.Font.SourceSansBold
+closePopupJump.TextSize = 24
+closePopupJump.ZIndex = 11
+closePopupJump.Parent = jumpPopup
+closePopupJump.MouseButton1Click:Connect(function()
+    jumpPopup.Visible = false
+end)
+
+jumpBtn.MouseButton1Click:Connect(function()
+    jumpPopup.Visible = true
+end)
+
+-- Popup ไม่จำกัดกระโดด (Script ทั่วไป)
+local infiniteJumpPopup = Instance.new("Frame")
+infiniteJumpPopup.Size = UDim2.new(0, 400, 0, 250)
+infiniteJumpPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+infiniteJumpPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+infiniteJumpPopup.Visible = false
+infiniteJumpPopup.Parent = gui
+infiniteJumpPopup.ZIndex = 10
+
+local infiniteJumpPopupCorner = Instance.new("UICorner", infiniteJumpPopup)
+infiniteJumpPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local infiniteJumpPopupShadow = Instance.new("ImageLabel")
+infiniteJumpPopupShadow.BackgroundTransparency = 1
+infiniteJumpPopupShadow.Image = "rbxassetid://1316045217"
+infiniteJumpPopupShadow.ImageTransparency = 0.4
+infiniteJumpPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+infiniteJumpPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+infiniteJumpPopupShadow.ZIndex = 9
+infiniteJumpPopupShadow.Parent = infiniteJumpPopup
+
+local infiniteJumpPopupTitle = Instance.new("TextLabel")
+infiniteJumpPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+infiniteJumpPopupTitle.BackgroundTransparency = 1
+infiniteJumpPopupTitle.Text = "ไม่จำกัดกระโดด"
+infiniteJumpPopupTitle.TextColor3 = Color3.fromRGB(200, 255, 0)
+infiniteJumpPopupTitle.Font = Enum.Font.SourceSansBold
+infiniteJumpPopupTitle.TextSize = 26
+infiniteJumpPopupTitle.ZIndex = 11
+infiniteJumpPopupTitle.Parent = infiniteJumpPopup
+
+local runBtnInfiniteJump = Instance.new("TextButton")
+runBtnInfiniteJump.Size = UDim2.new(0, 150, 0, 50)
+runBtnInfiniteJump.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnInfiniteJump.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnInfiniteJump.Text = "RUN"
+runBtnInfiniteJump.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnInfiniteJump.Font = Enum.Font.SourceSansBold
+runBtnInfiniteJump.TextSize = 28
+runBtnInfiniteJump.ZIndex = 11
+runBtnInfiniteJump.Parent = infiniteJumpPopup
+runBtnInfiniteJump.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastefy.app/OtfK65dQ/raw"))()
+    infiniteJumpPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnInfiniteJump = Instance.new("TextButton")
+cancelBtnInfiniteJump.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnInfiniteJump.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnInfiniteJump.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnInfiniteJump.Text = "ยกเลิก"
+cancelBtnInfiniteJump.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnInfiniteJump.Font = Enum.Font.SourceSansBold
+cancelBtnInfiniteJump.TextSize = 28
+cancelBtnInfiniteJump.ZIndex = 11
+cancelBtnInfiniteJump.Parent = infiniteJumpPopup
+cancelBtnInfiniteJump.MouseButton1Click:Connect(function()
+    infiniteJumpPopup.Visible = false
+end)
+
+local closePopupInfiniteJump = Instance.new("TextButton")
+closePopupInfiniteJump.Size = UDim2.new(0, 30, 0, 30)
+closePopupInfiniteJump.Position = UDim2.new(1, -40, 0, 10)
+closePopupInfiniteJump.BackgroundTransparency = 1
+closePopupInfiniteJump.Text = "X"
+closePopupInfiniteJump.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupInfiniteJump.Font = Enum.Font.SourceSansBold
+closePopupInfiniteJump.TextSize = 24
+closePopupInfiniteJump.ZIndex = 11
+closePopupInfiniteJump.Parent = infiniteJumpPopup
+closePopupInfiniteJump.MouseButton1Click:Connect(function()
+    infiniteJumpPopup.Visible = false
+end)
+
+infiniteJumpBtn.MouseButton1Click:Connect(function()
+    infiniteJumpPopup.Visible = true
+end)
+
+-- Popup เพิ่ม FPS (Script ทั่วไป)
+local fpsPopup = Instance.new("Frame")
+fpsPopup.Size = UDim2.new(0, 400, 0, 250)
+fpsPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+fpsPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+fpsPopup.Visible = false
+fpsPopup.Parent = gui
+fpsPopup.ZIndex = 10
+
+local fpsPopupCorner = Instance.new("UICorner", fpsPopup)
+fpsPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local fpsPopupShadow = Instance.new("ImageLabel")
+fpsPopupShadow.BackgroundTransparency = 1
+fpsPopupShadow.Image = "rbxassetid://1316045217"
+fpsPopupShadow.ImageTransparency = 0.4
+fpsPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+fpsPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+fpsPopupShadow.ZIndex = 9
+fpsPopupShadow.Parent = fpsPopup
+
+local fpsPopupTitle = Instance.new("TextLabel")
+fpsPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+fpsPopupTitle.BackgroundTransparency = 1
+fpsPopupTitle.Text = "เพิ่ม FPS"
+fpsPopupTitle.TextColor3 = Color3.fromRGB(255, 255, 100)
+fpsPopupTitle.Font = Enum.Font.SourceSansBold
+fpsPopupTitle.TextSize = 26
+fpsPopupTitle.ZIndex = 11
+fpsPopupTitle.Parent = fpsPopup
+
+local runBtnFps = Instance.new("TextButton")
+runBtnFps.Size = UDim2.new(0, 150, 0, 50)
+runBtnFps.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnFps.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnFps.Text = "RUN"
+runBtnFps.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnFps.Font = Enum.Font.SourceSansBold
+runBtnFps.TextSize = 28
+runBtnFps.ZIndex = 11
+runBtnFps.Parent = fpsPopup
+runBtnFps.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastefy.app/WmJoyaBZ/raw"))()
+    fpsPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnFps = Instance.new("TextButton")
+cancelBtnFps.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnFps.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnFps.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnFps.Text = "ยกเลิก"
+cancelBtnFps.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnFps.Font = Enum.Font.SourceSansBold
+cancelBtnFps.TextSize = 28
+cancelBtnFps.ZIndex = 11
+cancelBtnFps.Parent = fpsPopup
+cancelBtnFps.MouseButton1Click:Connect(function()
+    fpsPopup.Visible = false
+end)
+
+local closePopupFps = Instance.new("TextButton")
+closePopupFps.Size = UDim2.new(0, 30, 0, 30)
+closePopupFps.Position = UDim2.new(1, -40, 0, 10)
+closePopupFps.BackgroundTransparency = 1
+closePopupFps.Text = "X"
+closePopupFps.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupFps.Font = Enum.Font.SourceSansBold
+closePopupFps.TextSize = 24
+closePopupFps.ZIndex = 11
+closePopupFps.Parent = fpsPopup
+closePopupFps.MouseButton1Click:Connect(function()
+    fpsPopup.Visible = false
+end)
+
+fpsBtn.MouseButton1Click:Connect(function()
+    fpsPopup.Visible = true
+end)
+
+-- Popup ขโมยเสียง (Script ทั่วไป)
+local audioLoggerPopup = Instance.new("Frame")
+audioLoggerPopup.Size = UDim2.new(0, 400, 0, 250)
+audioLoggerPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+audioLoggerPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+audioLoggerPopup.Visible = false
+audioLoggerPopup.Parent = gui
+audioLoggerPopup.ZIndex = 10
+
+local audioLoggerPopupCorner = Instance.new("UICorner", audioLoggerPopup)
+audioLoggerPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local audioLoggerPopupShadow = Instance.new("ImageLabel")
+audioLoggerPopupShadow.BackgroundTransparency = 1
+audioLoggerPopupShadow.Image = "rbxassetid://1316045217"
+audioLoggerPopupShadow.ImageTransparency = 0.4
+audioLoggerPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+audioLoggerPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+audioLoggerPopupShadow.ZIndex = 9
+audioLoggerPopupShadow.Parent = audioLoggerPopup
+
+local audioLoggerPopupTitle = Instance.new("TextLabel")
+audioLoggerPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+audioLoggerPopupTitle.BackgroundTransparency = 1
+audioLoggerPopupTitle.Text = "ขโมยเสียง"
+audioLoggerPopupTitle.TextColor3 = Color3.fromRGB(150, 0, 255)
+audioLoggerPopupTitle.Font = Enum.Font.SourceSansBold
+audioLoggerPopupTitle.TextSize = 26
+audioLoggerPopupTitle.ZIndex = 11
+audioLoggerPopupTitle.Parent = audioLoggerPopup
+
+local runBtnAudioLogger = Instance.new("TextButton")
+runBtnAudioLogger.Size = UDim2.new(0, 150, 0, 50)
+runBtnAudioLogger.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnAudioLogger.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnAudioLogger.Text = "RUN"
+runBtnAudioLogger.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnAudioLogger.Font = Enum.Font.SourceSansBold
+runBtnAudioLogger.TextSize = 28
+runBtnAudioLogger.ZIndex = 11
+runBtnAudioLogger.Parent = audioLoggerPopup
+runBtnAudioLogger.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TOUx1/Roblox-script/refs/heads/main/Audio%20logger"))()
+    audioLoggerPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnAudioLogger = Instance.new("TextButton")
+cancelBtnAudioLogger.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnAudioLogger.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnAudioLogger.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnAudioLogger.Text = "ยกเลิก"
+cancelBtnAudioLogger.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnAudioLogger.Font = Enum.Font.SourceSansBold
+cancelBtnAudioLogger.TextSize = 28
+cancelBtnAudioLogger.ZIndex = 11
+cancelBtnAudioLogger.Parent = audioLoggerPopup
+cancelBtnAudioLogger.MouseButton1Click:Connect(function()
+    audioLoggerPopup.Visible = false
+end)
+
+local closePopupAudioLogger = Instance.new("TextButton")
+closePopupAudioLogger.Size = UDim2.new(0, 30, 0, 30)
+closePopupAudioLogger.Position = UDim2.new(1, -40, 0, 10)
+closePopupAudioLogger.BackgroundTransparency = 1
+closePopupAudioLogger.Text = "X"
+closePopupAudioLogger.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupAudioLogger.Font = Enum.Font.SourceSansBold
+closePopupAudioLogger.TextSize = 24
+closePopupAudioLogger.ZIndex = 11
+closePopupAudioLogger.Parent = audioLoggerPopup
+closePopupAudioLogger.MouseButton1Click:Connect(function()
+    audioLoggerPopup.Visible = false
+end)
+
+audioLoggerBtn.MouseButton1Click:Connect(function()
+    audioLoggerPopup.Visible = true
+end)
+
+-- Popup shift lock (Script ทั่วไป)
+local shiftLockPopup = Instance.new("Frame")
+shiftLockPopup.Size = UDim2.new(0, 400, 0, 250)
+shiftLockPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+shiftLockPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+shiftLockPopup.Visible = false
+shiftLockPopup.Parent = gui
+shiftLockPopup.ZIndex = 10
+
+local shiftLockPopupCorner = Instance.new("UICorner", shiftLockPopup)
+shiftLockPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local shiftLockPopupShadow = Instance.new("ImageLabel")
+shiftLockPopupShadow.BackgroundTransparency = 1
+shiftLockPopupShadow.Image = "rbxassetid://1316045217"
+shiftLockPopupShadow.ImageTransparency = 0.4
+shiftLockPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+shiftLockPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+shiftLockPopupShadow.ZIndex = 9
+shiftLockPopupShadow.Parent = shiftLockPopup
+
+local shiftLockPopupTitle = Instance.new("TextLabel")
+shiftLockPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+shiftLockPopupTitle.BackgroundTransparency = 1
+shiftLockPopupTitle.Text = "shift lock"
+shiftLockPopupTitle.TextColor3 = Color3.fromRGB(255, 200, 0)
+shiftLockPopupTitle.Font = Enum.Font.SourceSansBold
+shiftLockPopupTitle.TextSize = 26
+shiftLockPopupTitle.ZIndex = 11
+shiftLockPopupTitle.Parent = shiftLockPopup
+
+local runBtnShiftLock = Instance.new("TextButton")
+runBtnShiftLock.Size = UDim2.new(0, 150, 0, 50)
+runBtnShiftLock.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnShiftLock.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnShiftLock.Text = "RUN"
+runBtnShiftLock.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnShiftLock.Font = Enum.Font.SourceSansBold
+runBtnShiftLock.TextSize = 28
+runBtnShiftLock.ZIndex = 11
+runBtnShiftLock.Parent = shiftLockPopup
+runBtnShiftLock.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastefy.app/DhiytJbS/raw"))()
+    shiftLockPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnShiftLock = Instance.new("TextButton")
+cancelBtnShiftLock.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnShiftLock.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnShiftLock.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnShiftLock.Text = "ยกเลิก"
+cancelBtnShiftLock.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnShiftLock.Font = Enum.Font.SourceSansBold
+cancelBtnShiftLock.TextSize = 28
+cancelBtnShiftLock.ZIndex = 11
+cancelBtnShiftLock.Parent = shiftLockPopup
+cancelBtnShiftLock.MouseButton1Click:Connect(function()
+    shiftLockPopup.Visible = false
+end)
+
+local closePopupShiftLock = Instance.new("TextButton")
+closePopupShiftLock.Size = UDim2.new(0, 30, 0, 30)
+closePopupShiftLock.Position = UDim2.new(1, -40, 0, 10)
+closePopupShiftLock.BackgroundTransparency = 1
+closePopupShiftLock.Text = "X"
+closePopupShiftLock.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupShiftLock.Font = Enum.Font.SourceSansBold
+closePopupShiftLock.TextSize = 24
+closePopupShiftLock.ZIndex = 11
+closePopupShiftLock.Parent = shiftLockPopup
+closePopupShiftLock.MouseButton1Click:Connect(function()
+    shiftLockPopup.Visible = false
+end)
+
+shiftLockBtn.MouseButton1Click:Connect(function()
+    shiftLockPopup.Visible = true
+end)
+
+-- Popup พี่จ๋า (Script ทั่วไป)
+local dearBrotherPopup = Instance.new("Frame")
+dearBrotherPopup.Size = UDim2.new(0, 400, 0, 250)
+dearBrotherPopup.Position = UDim2.new(0.5, -200, 0.5, -125)
+dearBrotherPopup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+dearBrotherPopup.Visible = false
+dearBrotherPopup.Parent = gui
+dearBrotherPopup.ZIndex = 10
+
+local dearBrotherPopupCorner = Instance.new("UICorner", dearBrotherPopup)
+dearBrotherPopupCorner.CornerRadius = UDim.new(0, 16)
+
+local dearBrotherPopupShadow = Instance.new("ImageLabel")
+dearBrotherPopupShadow.BackgroundTransparency = 1
+dearBrotherPopupShadow.Image = "rbxassetid://1316045217"
+dearBrotherPopupShadow.ImageTransparency = 0.4
+dearBrotherPopupShadow.Size = UDim2.new(1, 40, 1, 40)
+dearBrotherPopupShadow.Position = UDim2.new(0, -20, 0, -20)
+dearBrotherPopupShadow.ZIndex = 9
+dearBrotherPopupShadow.Parent = dearBrotherPopup
+
+local dearBrotherPopupTitle = Instance.new("TextLabel")
+dearBrotherPopupTitle.Size = UDim2.new(1, 0, 0, 50)
+dearBrotherPopupTitle.BackgroundTransparency = 1
+dearBrotherPopupTitle.Text = "พี่จ๋า"
+dearBrotherPopupTitle.TextColor3 = Color3.fromRGB(255, 100, 180)
+dearBrotherPopupTitle.Font = Enum.Font.SourceSansBold
+dearBrotherPopupTitle.TextSize = 26
+dearBrotherPopupTitle.ZIndex = 11
+dearBrotherPopupTitle.Parent = dearBrotherPopup
+
+local runBtnDearBrother = Instance.new("TextButton")
+runBtnDearBrother.Size = UDim2.new(0, 150, 0, 50)
+runBtnDearBrother.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnDearBrother.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnDearBrother.Text = "RUN"
+runBtnDearBrother.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnDearBrother.Font = Enum.Font.SourceSansBold
+runBtnDearBrother.TextSize = 28
+runBtnDearBrother.ZIndex = 11
+runBtnDearBrother.Parent = dearBrotherPopup
+runBtnDearBrother.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TOUx1/Roblox-script/refs/heads/main/Dear%20Brother%20R15%20FE"))()
+    dearBrotherPopup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnDearBrother = Instance.new("TextButton")
+cancelBtnDearBrother.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnDearBrother.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnDearBrother.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnDearBrother.Text = "ยกเลิก"
+cancelBtnDearBrother.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnDearBrother.Font = Enum.Font.SourceSansBold
+cancelBtnDearBrother.TextSize = 28
+cancelBtnDearBrother.ZIndex = 11
+cancelBtnDearBrother.Parent = dearBrotherPopup
+cancelBtnDearBrother.MouseButton1Click:Connect(function()
+    dearBrotherPopup.Visible = false
+end)
+
+local closePopupDearBrother = Instance.new("TextButton")
+closePopupDearBrother.Size = UDim2.new(0, 30, 0, 30)
+closePopupDearBrother.Position = UDim2.new(1, -40, 0, 10)
+closePopupDearBrother.BackgroundTransparency = 1
+closePopupDearBrother.Text = "X"
+closePopupDearBrother.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupDearBrother.Font = Enum.Font.SourceSansBold
+closePopupDearBrother.TextSize = 24
+closePopupDearBrother.ZIndex = 11
+closePopupDearBrother.Parent = dearBrotherPopup
+closePopupDearBrother.MouseButton1Click:Connect(function()
+    dearBrotherPopup.Visible = false
+end)
+
+dearBrotherBtn.MouseButton1Click:Connect(function()
+    dearBrotherPopup.Visible = true
+end)
+
+-- Popup เต้น(r15) (Script ทั่วไป)
+local danceR15Popup = Instance.new("Frame")
+danceR15Popup.Size = UDim2.new(0, 400, 0, 250)
+danceR15Popup.Position = UDim2.new(0.5, -200, 0.5, -125)
+danceR15Popup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+danceR15Popup.Visible = false
+danceR15Popup.Parent = gui
+danceR15Popup.ZIndex = 10
+
+local danceR15PopupCorner = Instance.new("UICorner", danceR15Popup)
+danceR15PopupCorner.CornerRadius = UDim.new(0, 16)
+
+local danceR15PopupShadow = Instance.new("ImageLabel")
+danceR15PopupShadow.BackgroundTransparency = 1
+danceR15PopupShadow.Image = "rbxassetid://1316045217"
+danceR15PopupShadow.ImageTransparency = 0.4
+danceR15PopupShadow.Size = UDim2.new(1, 40, 1, 40)
+danceR15PopupShadow.Position = UDim2.new(0, -20, 0, -20)
+danceR15PopupShadow.ZIndex = 9
+danceR15PopupShadow.Parent = danceR15Popup
+
+local danceR15PopupTitle = Instance.new("TextLabel")
+danceR15PopupTitle.Size = UDim2.new(1, 0, 0, 50)
+danceR15PopupTitle.BackgroundTransparency = 1
+danceR15PopupTitle.Text = "เต้น(r15)"
+danceR15PopupTitle.TextColor3 = Color3.fromRGB(255, 20, 147)
+danceR15PopupTitle.Font = Enum.Font.SourceSansBold
+danceR15PopupTitle.TextSize = 26
+danceR15PopupTitle.ZIndex = 11
+danceR15PopupTitle.Parent = danceR15Popup
+
+local runBtnDanceR15 = Instance.new("TextButton")
+runBtnDanceR15.Size = UDim2.new(0, 150, 0, 50)
+runBtnDanceR15.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnDanceR15.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnDanceR15.Text = "RUN"
+runBtnDanceR15.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnDanceR15.Font = Enum.Font.SourceSansBold
+runBtnDanceR15.TextSize = 28
+runBtnDanceR15.ZIndex = 11
+runBtnDanceR15.Parent = danceR15Popup
+runBtnDanceR15.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/eCpipCTH"))()
+    danceR15Popup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnDanceR15 = Instance.new("TextButton")
+cancelBtnDanceR15.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnDanceR15.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnDanceR15.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnDanceR15.Text = "ยกเลิก"
+cancelBtnDanceR15.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnDanceR15.Font = Enum.Font.SourceSansBold
+cancelBtnDanceR15.TextSize = 28
+cancelBtnDanceR15.ZIndex = 11
+cancelBtnDanceR15.Parent = danceR15Popup
+cancelBtnDanceR15.MouseButton1Click:Connect(function()
+    danceR15Popup.Visible = false
+end)
+
+local closePopupDanceR15 = Instance.new("TextButton")
+closePopupDanceR15.Size = UDim2.new(0, 30, 0, 30)
+closePopupDanceR15.Position = UDim2.new(1, -40, 0, 10)
+closePopupDanceR15.BackgroundTransparency = 1
+closePopupDanceR15.Text = "X"
+closePopupDanceR15.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupDanceR15.Font = Enum.Font.SourceSansBold
+closePopupDanceR15.TextSize = 24
+closePopupDanceR15.ZIndex = 11
+closePopupDanceR15.Parent = danceR15Popup
+closePopupDanceR15.MouseButton1Click:Connect(function()
+    danceR15Popup.Visible = false
+end)
+
+danceR15Btn.MouseButton1Click:Connect(function()
+    danceR15Popup.Visible = true
+end)
+
+-- Popup R6 (Script ทั่วไป)
+local r6Popup = Instance.new("Frame")
+r6Popup.Size = UDim2.new(0, 400, 0, 250)
+r6Popup.Position = UDim2.new(0.5, -200, 0.5, -125)
+r6Popup.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+r6Popup.Visible = false
+r6Popup.Parent = gui
+r6Popup.ZIndex = 10
+
+local r6PopupCorner = Instance.new("UICorner", r6Popup)
+r6PopupCorner.CornerRadius = UDim.new(0, 16)
+
+local r6PopupShadow = Instance.new("ImageLabel")
+r6PopupShadow.BackgroundTransparency = 1
+r6PopupShadow.Image = "rbxassetid://1316045217"
+r6PopupShadow.ImageTransparency = 0.4
+r6PopupShadow.Size = UDim2.new(1, 40, 1, 40)
+r6PopupShadow.Position = UDim2.new(0, -20, 0, -20)
+r6PopupShadow.ZIndex = 9
+r6PopupShadow.Parent = r6Popup
+
+local r6PopupTitle = Instance.new("TextLabel")
+r6PopupTitle.Size = UDim2.new(1, 0, 0, 50)
+r6PopupTitle.BackgroundTransparency = 1
+r6PopupTitle.Text = "R6"
+r6PopupTitle.TextColor3 = Color3.fromRGB(100, 100, 255)
+r6PopupTitle.Font = Enum.Font.SourceSansBold
+r6PopupTitle.TextSize = 26
+r6PopupTitle.ZIndex = 11
+r6PopupTitle.Parent = r6Popup
+
+local runBtnR6 = Instance.new("TextButton")
+runBtnR6.Size = UDim2.new(0, 150, 0, 50)
+runBtnR6.Position = UDim2.new(0.5, -160, 1, -70)
+runBtnR6.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+runBtnR6.Text = "RUN"
+runBtnR6.TextColor3 = Color3.fromRGB(255, 255, 255)
+runBtnR6.Font = Enum.Font.SourceSansBold
+runBtnR6.TextSize = 28
+runBtnR6.ZIndex = 11
+runBtnR6.Parent = r6Popup
+runBtnR6.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua", true))()
+    r6Popup.Visible = false
+    notifySuccess()
+end)
+
+local cancelBtnR6 = Instance.new("TextButton")
+cancelBtnR6.Size = UDim2.new(0, 150, 0, 50)
+cancelBtnR6.Position = UDim2.new(0.5, 10, 1, -70)
+cancelBtnR6.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+cancelBtnR6.Text = "ยกเลิก"
+cancelBtnR6.TextColor3 = Color3.fromRGB(255, 255, 255)
+cancelBtnR6.Font = Enum.Font.SourceSansBold
+cancelBtnR6.TextSize = 28
+cancelBtnR6.ZIndex = 11
+cancelBtnR6.Parent = r6Popup
+cancelBtnR6.MouseButton1Click:Connect(function()
+    r6Popup.Visible = false
+end)
+
+local closePopupR6 = Instance.new("TextButton")
+closePopupR6.Size = UDim2.new(0, 30, 0, 30)
+closePopupR6.Position = UDim2.new(1, -40, 0, 10)
+closePopupR6.BackgroundTransparency = 1
+closePopupR6.Text = "X"
+closePopupR6.TextColor3 = Color3.fromRGB(255, 100, 100)
+closePopupR6.Font = Enum.Font.SourceSansBold
+closePopupR6.TextSize = 24
+closePopupR6.ZIndex = 11
+closePopupR6.Parent = r6Popup
+closePopupR6.MouseButton1Click:Connect(function()
+    r6Popup.Visible = false
+end)
+
+r6Btn.MouseButton1Click:Connect(function()
+    r6Popup.Visible = true
+end)
+
+print("🩸 TOU HUB All Buttons Complete & Ready to Exploit! 🩸")
