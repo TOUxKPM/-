@@ -1,5 +1,5 @@
 -- TOU HUB (ALL) - Advanced Exploit GUI 🖤💀
--- LocalScript (Exploit Ready - Single File) 🔥 Added Hitbox Expander!
+-- LocalScript (Exploit Ready - Single File) 🔥 Added Player Join/Leave Notifier!
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -259,11 +259,11 @@ UpdateLabel.Position = UDim2.new(0, 10, 0, 10)
 UpdateLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
 UpdateLabel.Text = [[
 🔥 อัปเดตล่าสุด 🔥
-- เพิ่มปุ่ม "ขยาย hitbox" (ตีไกลขึ้น)
+- เพิ่มปุ่ม "แจ้งเตือน" (รู้ทันทีใครเข้า-ออก)
 - รัน Async ไม่กระตุก
 - แจ้งเตือนพิเศษ
 
-ตีโดนแม้อยู่ไกล 🥊💀
+รู้ทุกการเคลื่อนไหว 👀💀
 ]]
 UpdateLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 UpdateLabel.Font = Enum.Font.Gotham
@@ -513,6 +513,14 @@ local Scripts = {
 			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/758017cf4e6ffa8fed43174fb3d43057"))()
 		end
 	},
+	{
+		Name = "แจ้งเตือน",
+		ButtonName = "แจ้งเตือน",
+		Description = "จะแจ้งเตือนคนที่เข้า-ออกเกม\nพิมพ์ /ปิด เพื่อปิดการแจ้งเตือน\nพิมพ์ /เปิด เพื่อเปิดการแจ้งเตือนอีกครั้ง",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/9f7f1fc40cf73bb516da640dee5990aa"))()
+		end
+	},
 }
 
 for _, scriptData in ipairs(Scripts) do
@@ -557,7 +565,9 @@ for _, scriptData in ipairs(Scripts) do
 			task.spawn(function()
 				local success, err = pcall(scriptData.Function)
 				if success then
-					if scriptData.Name == "ขยาย hitbox" then
+					if scriptData.Name == "แจ้งเตือน" then
+						ShowNotify("เปิดระบบแจ้งเตือนเข้า-ออกเกมแล้ว")
+					elseif scriptData.Name == "ขยาย hitbox" then
 						ShowNotify("เปิดโหมดขยาย hitbox แล้ว")
 					elseif scriptData.Name == "ท่าเต้น (R15)" then
 						ShowNotify("เปิดเมนูท่าเต้น (R15) เรียบร้อยแล้ว")
@@ -627,4 +637,4 @@ ToggleButton.MouseButton1Click:Connect(function()
 	end
 end)
 
-print("🔥 TOU HUB (ALL) + Hitbox Expander Added! 💀🚀")
+print("🔥 TOU HUB (ALL) + Join/Leave Notifier Added! 💀🚀")
