@@ -1,5 +1,5 @@
 -- TOU HUB (ALL) - Advanced Exploit GUI 🖤💀
--- LocalScript (Exploit Ready - Single File) 🔥 Added Player Puller!
+-- LocalScript (Exploit Ready - Single File) 🔥 Added Player Lock Camera!
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -259,11 +259,11 @@ UpdateLabel.Position = UDim2.new(0, 10, 0, 10)
 UpdateLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
 UpdateLabel.Text = [[
 🔥 อัปเดตล่าสุด 🔥
-- เพิ่มปุ่ม "ดึงผู้เล่น" (pull player / all)
+- เพิ่มปุ่ม "ล็อคผู้เล่น" (camera lock 3 โหมด)
 - รัน Async ไม่กระตุก
 - แจ้งเตือนพิเศษ
 
-ลากใครมาใกล้ก็ได้ 💪💀
+จ้องเป้าหมายไม่กระพริบ 🧲💀
 ]]
 UpdateLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 UpdateLabel.Font = Enum.Font.Gotham
@@ -529,6 +529,14 @@ local Scripts = {
 			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/50936d24612b4f1de50b2af58c524645"))()
 		end
 	},
+	{
+		Name = "ล็อคผู้เล่น",
+		ButtonName = "ล็อคผู้เล่น",
+		Description = "กล้องจะล็อคไปหาผู้เล่นหรือ NPC\nมี 3 โหมดให้เลือก:\n1) ใกล้สุด\n2) ไกลสุด\n3) กล้อง",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/f8bb866c899b4e0b8e0a6d80b756aa0e"))()
+		end
+	},
 }
 
 for _, scriptData in ipairs(Scripts) do
@@ -573,7 +581,9 @@ for _, scriptData in ipairs(Scripts) do
 			task.spawn(function()
 				local success, err = pcall(scriptData.Function)
 				if success then
-					if scriptData.Name == "ดึงผู้เล่น" then
+					if scriptData.Name == "ล็อคผู้เล่น" then
+						ShowNotify("เปิดระบบล็อคผู้เล่นแล้ว")
+					elseif scriptData.Name == "ดึงผู้เล่น" then
 						ShowNotify("เปิดระบบดึงผู้เล่นแล้ว")
 					elseif scriptData.Name == "แจ้งเตือน" then
 						ShowNotify("เปิดระบบแจ้งเตือนเข้า-ออกเกมแล้ว")
@@ -647,4 +657,4 @@ ToggleButton.MouseButton1Click:Connect(function()
 	end
 end)
 
-print("🔥 TOU HUB (ALL) + Player Puller Added! 💀🚀")
+print("🔥 TOU HUB (ALL) + Player Lock Camera Added! 💀🚀")
