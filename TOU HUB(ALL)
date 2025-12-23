@@ -1,1 +1,630 @@
-loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/d0519cf66a6f1b2e806f669bdb83153b"))()
+-- TOU HUB (ALL) - Advanced Exploit GUI 🖤💀
+-- LocalScript (Exploit Ready - Single File) 🔥 Added Hitbox Expander!
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ========== Custom Notification System ==========
+local NotifyGui = Instance.new("ScreenGui")
+NotifyGui.Name = "TOU_NotifyGui"
+NotifyGui.ResetOnSpawn = false
+NotifyGui.DisplayOrder = 999999
+NotifyGui.Parent = playerGui
+
+local CurrentNotify = nil
+
+local function ShowNotify(text, isError)
+	if CurrentNotify and CurrentNotify.Parent then
+		CurrentNotify:Destroy()
+	end
+	
+	local NotifyFrame = Instance.new("Frame")
+	NotifyFrame.Size = UDim2.new(0, 300, 0, 60)
+	NotifyFrame.Position = UDim2.new(0.5, -150, 0, -80)
+	NotifyFrame.BackgroundColor3 = isError and Color3.fromRGB(170, 0, 0) or Color3.fromRGB(20, 20, 25)
+	NotifyFrame.BorderSizePixel = 0
+	NotifyFrame.Parent = NotifyGui
+	
+	Instance.new("UICorner", NotifyFrame).CornerRadius = UDim.new(0, 12)
+	
+	local NotifyLabel = Instance.new("TextLabel")
+	NotifyLabel.Size = UDim2.new(1, -20, 1, 0)
+	NotifyLabel.Position = UDim2.new(0, 10, 0, 0)
+	NotifyLabel.BackgroundTransparency = 1
+	NotifyLabel.Text = text
+	NotifyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	NotifyLabel.Font = Enum.Font.GothamBold
+	NotifyLabel.TextSize = 18
+	NotifyLabel.TextWrapped = true
+	NotifyLabel.Parent = NotifyFrame
+	
+	NotifyFrame.Visible = true
+	TweenService:Create(NotifyFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+		Position = UDim2.new(0.5, -150, 0, 20)
+	}):Play()
+	TweenService:Create(NotifyFrame, TweenInfo.new(0.3, Enum.EasingStyle.Linear), {
+		BackgroundTransparency = 0
+	}):Play()
+	TweenService:Create(NotifyLabel, TweenInfo.new(0.3, Enum.EasingStyle.Linear), {
+		TextTransparency = 0
+	}):Play()
+	
+	CurrentNotify = NotifyFrame
+	
+	task.delay(2, function()
+		if NotifyFrame and NotifyFrame.Parent then
+			TweenService:Create(NotifyFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
+				Position = UDim2.new(0.5, -150, 0, -80)
+			}):Play()
+			TweenService:Create(NotifyFrame, TweenInfo.new(0.4, Enum.EasingStyle.Linear), {
+				BackgroundTransparency = 1
+			}):Play()
+			TweenService:Create(NotifyLabel, TweenInfo.new(0.4, Enum.EasingStyle.Linear), {
+				TextTransparency = 1
+			}):Play()
+			
+			task.delay(0.5, function()
+				if NotifyFrame and NotifyFrame.Parent then
+					NotifyFrame:Destroy()
+					if CurrentNotify == NotifyFrame then
+						CurrentNotify = nil
+					end
+				end
+			end)
+		end
+	end)
+end
+
+-- ========== Toggle Button (ลอยบนสุด) ==========
+local ToggleGui = Instance.new("ScreenGui")
+ToggleGui.Name = "TOU_ToggleGui"
+ToggleGui.ResetOnSpawn = false
+ToggleGui.DisplayOrder = 999999
+ToggleGui.IgnoreGuiInset = true
+ToggleGui.Parent = playerGui
+
+local ToggleButton = Instance.new("ImageButton")
+ToggleButton.Name = "ToggleBtn"
+ToggleButton.Size = UDim2.new(0, 64, 0, 64)
+ToggleButton.Position = UDim2.new(0, 10, 0.5, -32)
+ToggleButton.BackgroundTransparency = 1
+ToggleButton.Image = "rbxassetid://91219883240615"
+ToggleButton.ZIndex = 10
+ToggleButton.Parent = ToggleGui
+
+local dragging = false
+local dragStart, startPos
+
+ToggleButton.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = ToggleButton.Position
+	end
+end)
+
+ToggleButton.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = false
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		local delta = input.Position - dragStart
+		ToggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+end)
+
+-- ========== Main GUI ==========
+local MainGui = Instance.new("ScreenGui")
+MainGui.Name = "TOU_HUB_ALL"
+MainGui.ResetOnSpawn = false
+MainGui.DisplayOrder = 5
+MainGui.Parent = playerGui
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 420, 0, 320)
+MainFrame.Position = UDim2.new(1, -440, 0, 20)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+MainFrame.BorderSizePixel = 0
+MainFrame.Visible = false
+MainFrame.Parent = MainGui
+
+Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 14)
+
+local TitleBar = Instance.new("Frame")
+TitleBar.Size = UDim2.new(1, 0, 0, 40)
+TitleBar.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+TitleBar.Parent = MainFrame
+
+Instance.new("UICorner", TitleBar).CornerRadius = UDim.new(0, 14)
+
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Size = UDim2.new(1, -80, 1, 0)
+TitleLabel.Position = UDim2.new(0, 15, 0, 0)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Text = "TOU HUB (ALL)"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextSize = 18
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+TitleLabel.Parent = TitleBar
+
+local MinimizeBtn = Instance.new("TextButton")
+MinimizeBtn.Size = UDim2.new(0, 30, 0, 30)
+MinimizeBtn.Position = UDim2.new(1, -40, 0, 5)
+MinimizeBtn.BackgroundTransparency = 1
+MinimizeBtn.Text = "−"
+MinimizeBtn.TextColor3 = Color3.fromRGB(200, 200, 200)
+MinimizeBtn.Font = Enum.Font.GothamBold
+MinimizeBtn.TextSize = 24
+MinimizeBtn.Parent = TitleBar
+
+MinimizeBtn.MouseButton1Click:Connect(function()
+	MainFrame.Visible = false
+end)
+
+local guiDragging = false
+local guiDragStart, guiStartPos
+
+TitleBar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		guiDragging = true
+		guiDragStart = input.Position
+		guiStartPos = MainFrame.Position
+	end
+end)
+
+TitleBar.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		guiDragging = false
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if guiDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		local delta = input.Position - guiDragStart
+		MainFrame.Position = UDim2.new(guiStartPos.X.Scale, guiStartPos.X.Offset + delta.X, guiStartPos.Y.Scale, guiStartPos.Y.Offset + delta.Y)
+	end
+end)
+
+-- ========== Tabs ==========
+local TabFrame = Instance.new("Frame")
+TabFrame.Size = UDim2.new(1, 0, 0, 40)
+TabFrame.Position = UDim2.new(0, 0, 0, 40)
+TabFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+TabFrame.Parent = MainFrame
+
+local TabList = Instance.new("UIListLayout", TabFrame)
+TabList.FillDirection = Enum.FillDirection.Horizontal
+TabList.Padding = UDim.new(0, 4)
+TabList.HorizontalAlignment = Enum.HorizontalAlignment.Left
+
+local function CreateTab(name)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0, 120, 1, 0)
+	btn.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+	btn.Text = name
+	btn.TextColor3 = Color3.fromRGB(180, 180, 180)
+	btn.Font = Enum.Font.GothamSemibold
+	btn.TextSize = 16
+	btn.Parent = TabFrame
+	Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 8)
+	return btn
+end
+
+local HomeTab = CreateTab("หน้าหลัก")
+local ScriptTab = CreateTab("Script")
+local UpdateTab = CreateTab("ประกาศอัปเดต")
+
+-- ========== Pages ==========
+local PagesFolder = Instance.new("Folder")
+PagesFolder.Name = "Pages"
+PagesFolder.Parent = MainFrame
+
+local function CreatePage(name)
+	local frame = Instance.new("Frame")
+	frame.Name = name.."Page"
+	frame.Size = UDim2.new(1, -20, 1, -100)
+	frame.Position = UDim2.new(0, 10, 0, 90)
+	frame.BackgroundTransparency = 1
+	frame.Visible = false
+	frame.Parent = PagesFolder
+	return frame
+end
+
+local HomePage = CreatePage("Home")
+local ScriptPage = CreatePage("Script")
+local UpdatePage = CreatePage("Update")
+
+local WelcomeLabel = Instance.new("TextLabel")
+WelcomeLabel.Size = UDim2.new(1, 0, 0, 50)
+WelcomeLabel.Position = UDim2.new(0, 0, 0, 20)
+WelcomeLabel.BackgroundTransparency = 1
+WelcomeLabel.Text = "Welcome to TOU HUB (ALL)"
+WelcomeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+WelcomeLabel.Font = Enum.Font.GothamBold
+WelcomeLabel.TextSize = 24
+WelcomeLabel.Parent = HomePage
+
+local UpdateLabel = Instance.new("TextLabel")
+UpdateLabel.Size = UDim2.new(1, -20, 1, -20)
+UpdateLabel.Position = UDim2.new(0, 10, 0, 10)
+UpdateLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+UpdateLabel.Text = [[
+🔥 อัปเดตล่าสุด 🔥
+- เพิ่มปุ่ม "ขยาย hitbox" (ตีไกลขึ้น)
+- รัน Async ไม่กระตุก
+- แจ้งเตือนพิเศษ
+
+ตีโดนแม้อยู่ไกล 🥊💀
+]]
+UpdateLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+UpdateLabel.Font = Enum.Font.Gotham
+UpdateLabel.TextSize = 16
+UpdateLabel.TextWrapped = true
+UpdateLabel.TextYAlignment = Enum.TextYAlignment.Top
+UpdateLabel.Parent = UpdatePage
+
+Instance.new("UICorner", UpdateLabel).CornerRadius = UDim.new(0, 10)
+
+local ScriptScroll = Instance.new("ScrollingFrame")
+ScriptScroll.Size = UDim2.new(1, 0, 1, 0)
+ScriptScroll.BackgroundTransparency = 1
+ScriptScroll.ScrollBarThickness = 6
+ScriptScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+ScriptScroll.Parent = ScriptPage
+
+local ScriptGrid = Instance.new("UIGridLayout", ScriptScroll)
+ScriptGrid.CellSize = UDim2.new(0, 180, 0, 60)
+ScriptGrid.CellPadding = UDim2.new(0, 12, 0, 12)
+ScriptGrid.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
+-- ========== Mini Popup GUI ==========
+local PopupGui = Instance.new("ScreenGui")
+PopupGui.Name = "TOU_PopupGui"
+PopupGui.ResetOnSpawn = false
+PopupGui.DisplayOrder = 10
+PopupGui.Parent = playerGui
+
+local PopupFrame = Instance.new("Frame")
+PopupFrame.Size = UDim2.new(0, 360, 0, 220)
+PopupFrame.Position = UDim2.new(0.5, -180, 0.5, -110)
+PopupFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+PopupFrame.Visible = false
+PopupFrame.Parent = PopupGui
+
+Instance.new("UICorner", PopupFrame).CornerRadius = UDim.new(0, 16)
+
+local PopupTitleBar = Instance.new("Frame")
+PopupTitleBar.Size = UDim2.new(1, 0, 0, 40)
+PopupTitleBar.BackgroundColor3 = Color3.fromRGB(10, 10, 15)
+PopupTitleBar.Parent = PopupFrame
+
+Instance.new("UICorner", PopupTitleBar).CornerRadius = UDim.new(0, 16)
+
+local PopupTitleLabel = Instance.new("TextLabel")
+PopupTitleLabel.Size = UDim2.new(1, -20, 1, 0)
+PopupTitleLabel.Position = UDim2.new(0, 10, 0, 0)
+PopupTitleLabel.BackgroundTransparency = 1
+PopupTitleLabel.Text = "Script Name"
+PopupTitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+PopupTitleLabel.Font = Enum.Font.GothamBold
+PopupTitleLabel.TextSize = 18
+PopupTitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+PopupTitleLabel.Parent = PopupTitleBar
+
+local DescLabel = Instance.new("TextLabel")
+DescLabel.Size = UDim2.new(1, -30, 0, 80)
+DescLabel.Position = UDim2.new(0, 15, 0, 50)
+DescLabel.BackgroundTransparency = 1
+DescLabel.Text = "Description here..."
+DescLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+DescLabel.Font = Enum.Font.Gotham
+DescLabel.TextSize = 15
+DescLabel.TextWrapped = true
+DescLabel.TextYAlignment = Enum.TextYAlignment.Top
+DescLabel.Parent = PopupFrame
+
+local RunBtn = Instance.new("TextButton")
+RunBtn.Size = UDim2.new(0, 140, 0, 50)
+RunBtn.Position = UDim2.new(0, 20, 1, -70)
+RunBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+RunBtn.Text = "▶️ รัน"
+RunBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+RunBtn.Font = Enum.Font.GothamBold
+RunBtn.TextSize = 18
+RunBtn.Parent = PopupFrame
+Instance.new("UICorner", RunBtn).CornerRadius = UDim.new(0, 10)
+
+local CancelBtn = Instance.new("TextButton")
+CancelBtn.Size = UDim2.new(0, 140, 0, 50)
+CancelBtn.Position = UDim2.new(1, -160, 1, -70)
+CancelBtn.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+CancelBtn.Text = "❌ ยกเลิก"
+CancelBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CancelBtn.Font = Enum.Font.GothamBold
+CancelBtn.TextSize = 18
+CancelBtn.Parent = PopupFrame
+Instance.new("UICorner", CancelBtn).CornerRadius = UDim.new(0, 10)
+
+local popupDragging = false
+local popupDragStart, popupStartPos
+
+PopupTitleBar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		popupDragging = true
+		popupDragStart = input.Position
+		popupStartPos = PopupFrame.Position
+	end
+end)
+
+PopupTitleBar.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		popupDragging = false
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if popupDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		local delta = input.Position - popupDragStart
+		PopupFrame.Position = UDim2.new(popupStartPos.X.Scale, popupStartPos.X.Offset + delta.X, popupStartPos.Y.Scale, popupStartPos.Y.Offset + delta.Y)
+	end
+end)
+
+local tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+local fadeIn = {BackgroundTransparency = 0; Size = UDim2.new(0, 360, 0, 220)}
+local fadeOut = {BackgroundTransparency = 1; Size = UDim2.new(0, 340, 0, 200)}
+
+local function OpenPopup()
+	PopupFrame.Visible = true
+	PopupFrame.Size = UDim2.new(0, 340, 0, 200)
+	PopupFrame.BackgroundTransparency = 1
+	TweenService:Create(PopupFrame, tweenInfo, fadeIn):Play()
+	RunBtn.Text = "▶️ รัน"
+	RunBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+	RunBtn.Active = true
+end
+
+local function ClosePopup()
+	TweenService:Create(PopupFrame, tweenInfo, fadeOut):Play()
+	task.delay(0.4, function()
+		PopupFrame.Visible = false
+	end)
+end
+
+-- ========== Script Template System ==========
+local Scripts = {
+	{
+		Name = "บิน",
+		ButtonName = "บิน",
+		Description = "script บิน",
+		Function = function()
+			loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gui-Fly-v3-37111"))()
+		end
+	},
+	{
+		Name = "ความเร็ว",
+		ButtonName = "ความเร็ว",
+		Description = "script เพิ่มความเร็ว",
+		Function = function()
+			loadstring(game:HttpGet("https://pastefy.app/cCNFO7iL/raw"))()
+		end
+	},
+	{
+		Name = "ESP Players",
+		ButtonName = "ESP Players",
+		Description = "script มองเลือด, ความห่างของผู้เล่น,\nชื่อจริง (ในเกม) และแสดง hitbox",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/9451b42da05abea85433ef5431790932"))()
+		end
+	},
+	{
+		Name = "กระโดดไม่จำกัด",
+		ButtonName = "กระโดดไม่จำกัด",
+		Description = "กระโดดไม่จำกัด",
+		Function = function()
+			loadstring(game:HttpGet("https://pastefy.app/OtfK65dQ/raw"))()
+		end
+	},
+	{
+		Name = "Shift Lock",
+		ButtonName = "Shift Lock",
+		Description = "shift lock เหมือนในคอม🥵",
+		Function = function()
+			loadstring(game:HttpGet("https://pastefy.app/DhiytJbS/raw"))()
+		end
+	},
+	{
+		Name = "infiniteyield",
+		ButtonName = "Infinite Yield",
+		Description = "มีคำสั่งเยอะอยู่👀",
+		Function = function()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'), true))()
+		end
+	},
+	{
+		Name = "กระโดด",
+		ButtonName = "กระโดด",
+		Description = "ไว้ปรับการกระโดด ว่าจะกระโดดสูงแค่ไหน",
+		Function = function()
+			loadstring(game:HttpGet("https://pastefy.app/bv5KayX6/raw"))()
+		end
+	},
+	{
+		Name = "R6",
+		ButtonName = "R6",
+		Description = "ปรับจาก R15 ไป R6",
+		Function = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua", true))()
+		end
+	},
+	{
+		Name = "เพิ่ม FPS",
+		ButtonName = "เพิ่ม FPS",
+		Description = "ทำให้เกมลื่นขึ้น และมียืดจอ",
+		Function = function()
+			loadstring(game:HttpGet("https://pastefy.app/WmJoyaBZ/raw"))()
+		end
+	},
+	{
+		Name = "ซุ่มมอง",
+		ButtonName = "ซุ่มมอง",
+		Description = "ดูคนอื่นแบบ ที่คนอื่นไม่รู้ตัว🤪",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/56ebde3a61f4a943773b967541428290"))()
+		end
+	},
+	{
+		Name = "ต่อต้านเข้าหลัง",
+		ButtonName = "ต่อต้านเข้าหลัง",
+		Description = "เมื่อเปิด พวกโปร bang หรือพวกวาปตามจะตายทันที🤪",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/cf443c14410602da23a3adeb12eadc21"))()
+		end
+	},
+	{
+		Name = "กระเด็นคน",
+		ButtonName = "กระเด็นคน",
+		Description = "กระเด็นผู้เล่นในเกมได้ (ใช้เฉพาะแมพที่ชนกันได้)🥶",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/67d4bac5bb5c40bbac2a11a33bc71db0"))()
+		end
+	},
+	{
+		Name = "ท่าเต้น (R15)",
+		ButtonName = "ท่าเต้น (R15)",
+		Description = "ท่าเต้นมีเกือบทุกท่ามั้ง (R15)",
+		Function = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/Emotes.lua"))()
+		end
+	},
+	{
+		Name = "ขยาย hitbox",
+		ButtonName = "ขยาย hitbox",
+		Description = "ขยาย hitbox ทำให้ตีไกลขึ้น",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/758017cf4e6ffa8fed43174fb3d43057"))()
+		end
+	},
+}
+
+for _, scriptData in ipairs(Scripts) do
+	local btn = Instance.new("TextButton")
+	btn.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+	btn.Text = scriptData.ButtonName or scriptData.Name
+	btn.TextColor3 = Color3.fromRGB(220, 220, 220)
+	btn.Font = Enum.Font.GothamSemibold
+	btn.TextSize = 16
+	btn.TextWrapped = true
+	btn.Parent = ScriptScroll
+	
+	Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 10)
+	
+	btn.MouseButton1Click:Connect(function()
+		PopupTitleLabel.Text = scriptData.Name
+		DescLabel.Text = scriptData.Description
+		
+		MainFrame.Visible = false
+		OpenPopup()
+		
+		local cancelConn
+		cancelConn = CancelBtn.MouseButton1Click:Connect(function()
+			ClosePopup()
+			MainFrame.Visible = true
+			cancelConn:Disconnect()
+		end)
+		
+		local runConn
+		runConn = RunBtn.MouseButton1Click:Connect(function()
+			if not RunBtn.Active then return end
+			
+			ClosePopup()
+			MainFrame.Visible = true
+			
+			ShowNotify("กำลังรัน " .. scriptData.Name .. "... ⏳")
+			
+			RunBtn.Text = "รันแล้ว ✅"
+			RunBtn.BackgroundColor3 = Color3.fromRGB(0, 100, 0)
+			RunBtn.Active = false
+			
+			task.spawn(function()
+				local success, err = pcall(scriptData.Function)
+				if success then
+					if scriptData.Name == "ขยาย hitbox" then
+						ShowNotify("เปิดโหมดขยาย hitbox แล้ว")
+					elseif scriptData.Name == "ท่าเต้น (R15)" then
+						ShowNotify("เปิดเมนูท่าเต้น (R15) เรียบร้อยแล้ว")
+					elseif scriptData.Name == "กระเด็นคน" then
+						ShowNotify("เปิดโหมดกระเด็นคนแล้ว")
+					elseif scriptData.Name == "ต่อต้านเข้าหลัง" then
+						ShowNotify("เปิดโหมดต่อต้านเข้าหลังแล้ว")
+					elseif scriptData.Name == "ซุ่มมอง" then
+						ShowNotify("เปิดโหมดซุ่มมองเรียบร้อยแล้ว")
+					elseif scriptData.Name == "เพิ่ม FPS" then
+						ShowNotify("เพิ่ม FPS เรียบร้อยแล้ว")
+					elseif scriptData.Name == "R6" then
+						ShowNotify("ปรับเป็น R6 เรียบร้อยแล้ว")
+					elseif scriptData.Name == "กระโดด" then
+						ShowNotify("รันสคริปต์กระโดดเรียบร้อยแล้ว")
+					elseif scriptData.Name == "infiniteyield" then
+						ShowNotify("รัน Infinite Yield สำเร็จแล้ว")
+					else
+						ShowNotify(scriptData.Name .. " รันสำเร็จแล้ว! 🚀")
+					end
+				else
+					ShowNotify("รันล้มเหลว: " .. tostring(err), true)
+				end
+			end)
+			
+			runConn:Disconnect()
+			if cancelConn then cancelConn:Disconnect() end
+		end)
+	end)
+end
+
+-- ========== Tab System ==========
+local currentPage = HomePage
+
+local function ShowPage(page)
+	if currentPage then currentPage.Visible = false end
+	page.Visible = true
+	currentPage = page
+end
+
+local function SelectTab(tabBtn)
+	for _, btn in pairs(TabFrame:GetChildren()) do
+		if btn:IsA("TextButton") then
+			if btn == tabBtn then
+				TweenService:Create(btn, tweenInfo, {BackgroundColor3 = Color3.fromRGB(0, 120, 215)}):Play()
+				TweenService:Create(btn, tweenInfo, {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+			else
+				TweenService:Create(btn, tweenInfo, {BackgroundColor3 = Color3.fromRGB(30, 30, 35)}):Play()
+				TweenService:Create(btn, tweenInfo, {TextColor3 = Color3.fromRGB(180, 180, 180)}):Play()
+			end
+		end
+	end
+end
+
+HomeTab.MouseButton1Click:Connect(function() ShowPage(HomePage) SelectTab(HomeTab) end)
+ScriptTab.MouseButton1Click:Connect(function() ShowPage(ScriptPage) SelectTab(ScriptTab) end)
+UpdateTab.MouseButton1Click:Connect(function() ShowPage(UpdatePage) SelectTab(UpdateTab) end)
+
+ShowPage(HomePage)
+SelectTab(HomeTab)
+
+ToggleButton.MouseButton1Click:Connect(function()
+	MainFrame.Visible = not MainFrame.Visible
+	if MainFrame.Visible then
+		ShowPage(HomePage)
+		SelectTab(HomeTab)
+	end
+end)
+
+print("🔥 TOU HUB (ALL) + Hitbox Expander Added! 💀🚀")
