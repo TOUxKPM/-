@@ -1,5 +1,5 @@
 -- TOU HUB (ALL) - Advanced Exploit GUI 🖤💀
--- LocalScript (Exploit Ready - Single File) 🔥 Added Teleport to Player!
+-- LocalScript (Exploit Ready - Single File) 🔥 Added Auto Tool User!
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -259,11 +259,11 @@ UpdateLabel.Position = UDim2.new(0, 10, 0, 10)
 UpdateLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
 UpdateLabel.Text = [[
 🔥 อัปเดตล่าสุด 🔥
-- เพิ่มปุ่ม "วาปหาผู้เล่น" (teleport to player)
+- เพิ่มปุ่ม "ออโต้ใช้ไอเท็ม" (auto tool activate)
 - รัน Async ไม่กระตุก
 - แจ้งเตือนพิเศษ
 
-ทะลุไปหาใครก็ได้ 🌀💀
+ใช้ Tool ถี่ ๆ อัตโนมัติ 🛠️💀
 ]]
 UpdateLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 UpdateLabel.Font = Enum.Font.Gotham
@@ -545,6 +545,14 @@ local Scripts = {
 			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/e3cb0381a6b84f240b7c691eaf48a10b"))()
 		end
 	},
+	{
+		Name = "ออโต้ใช้ไอเท็ม",
+		ButtonName = "ออโต้ใช้ไอเท็ม",
+		Description = "จะใช้งานไอเท็ม (Tool) แบบออโต้",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/388a61ce9260266fc8785623ae4554b5"))()
+		end
+	},
 }
 
 for _, scriptData in ipairs(Scripts) do
@@ -589,7 +597,9 @@ for _, scriptData in ipairs(Scripts) do
 			task.spawn(function()
 				local success, err = pcall(scriptData.Function)
 				if success then
-					if scriptData.Name == "วาปหาผู้เล่น" then
+					if scriptData.Name == "ออโต้ใช้ไอเท็ม" then
+						ShowNotify("เปิดระบบออโต้ใช้ไอเท็มแล้ว")
+					elseif scriptData.Name == "วาปหาผู้เล่น" then
 						ShowNotify("วาปหาผู้เล่นเรียบร้อยแล้ว")
 					elseif scriptData.Name == "ล็อคผู้เล่น" then
 						ShowNotify("เปิดระบบล็อคผู้เล่นแล้ว")
@@ -667,4 +677,4 @@ ToggleButton.MouseButton1Click:Connect(function()
 	end
 end)
 
-print("🔥 TOU HUB (ALL) + Teleport to Player Added! 💀🚀")
+print("🔥 TOU HUB (ALL) + Auto Tool User Added! 💀🚀")
