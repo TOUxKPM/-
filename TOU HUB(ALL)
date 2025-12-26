@@ -1,5 +1,5 @@
 -- TOU HUB (ALL) - Advanced Exploit GUI 🖤💀
--- LocalScript (Exploit Ready - Single File) 🔥 Added Auto Tool User!
+-- LocalScript (Exploit Ready - Single File) 🔥 Added Fullbright!
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -259,11 +259,11 @@ UpdateLabel.Position = UDim2.new(0, 10, 0, 10)
 UpdateLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
 UpdateLabel.Text = [[
 🔥 อัปเดตล่าสุด 🔥
-- เพิ่มปุ่ม "ออโต้ใช้ไอเท็ม" (auto tool activate)
+- เพิ่มปุ่ม "เพิ่มแสง" (Fullbright + คำสั่งเปิด/ปิด)
 - รัน Async ไม่กระตุก
 - แจ้งเตือนพิเศษ
 
-ใช้ Tool ถี่ ๆ อัตโนมัติ 🛠️💀
+สว่างจ้า ไม่กลัวมืดอีกต่อไป 💡💀
 ]]
 UpdateLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 UpdateLabel.Font = Enum.Font.Gotham
@@ -553,6 +553,14 @@ local Scripts = {
 			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/388a61ce9260266fc8785623ae4554b5"))()
 		end
 	},
+	{
+		Name = "เพิ่มแสง",
+		ButtonName = "เพิ่มแสง",
+		Description = "เพิ่มแสงในเกมให้สว่าง\nคำสั่ง:\n/เปิดfb = เปิดแสง\n/ปิดfb = ปิดแสง",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/69125f75192aa359c409f8006b682f0e"))()
+		end
+	},
 }
 
 for _, scriptData in ipairs(Scripts) do
@@ -597,7 +605,9 @@ for _, scriptData in ipairs(Scripts) do
 			task.spawn(function()
 				local success, err = pcall(scriptData.Function)
 				if success then
-					if scriptData.Name == "ออโต้ใช้ไอเท็ม" then
+					if scriptData.Name == "เพิ่มแสง" then
+						ShowNotify("เปิดระบบเพิ่มแสงแล้ว")
+					elseif scriptData.Name == "ออโต้ใช้ไอเท็ม" then
 						ShowNotify("เปิดระบบออโต้ใช้ไอเท็มแล้ว")
 					elseif scriptData.Name == "วาปหาผู้เล่น" then
 						ShowNotify("วาปหาผู้เล่นเรียบร้อยแล้ว")
@@ -677,4 +687,4 @@ ToggleButton.MouseButton1Click:Connect(function()
 	end
 end)
 
-print("🔥 TOU HUB (ALL) + Auto Tool User Added! 💀🚀")
+print("🔥 TOU HUB (ALL) + Fullbright Added! 💀🚀")
