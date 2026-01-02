@@ -566,7 +566,7 @@ local Scripts = {
 		ButtonName = "ออโต้หยิบของ",
 		Description = "หยิบไอเท็ม (Tool) อัตโนมัติ\nใช้ได้เฉพาะบางแมพที่ไอเท็มสามารถดรอปได้",
 		Function = function()
-			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/e241fb6c78cc877b2782e0e7fbd3b9a6"))()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/21c9f7cd18d1829ee29492fcd0e0b73e"))()
 		end
 	},
 }
