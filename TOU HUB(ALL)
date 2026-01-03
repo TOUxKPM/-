@@ -1,5 +1,5 @@
 -- TOU HUB (ALL) - Advanced Exploit GUI 🖤💀
--- LocalScript (Exploit Ready - Single File) 🔥 Added FPS Checker + Updated AntiLogger Link!
+-- LocalScript (Exploit Ready - Single File) 🔥 Added TP Walk!
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -267,11 +267,11 @@ UpdateLabel.Position = UDim2.new(0, 10, 0, 10)
 UpdateLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
 UpdateLabel.Text = [[
 🔥 อัปเดตล่าสุด 🔥
-- เพิ่มปุ่ม "เช็ค FPS" (แสดง FPS แบบเรียลไทม์)
-- อัปเดต AntiLogger ลิงก์ใหม่ (ป้องกัน logger แรงขึ้น)
+- เพิ่มปุ่ม "TP Walk" (เดินพุ่งทะลุ)
+- เช็ค FPS + AntiLogger ล่าสุด
 - ฟีเจอร์เดิมทั้งหมดยังอยู่ครบ
 
-เช็คเฟรมเรท + ป้องกัน logger แน่น ๆ 💀🚀
+พุ่งไปข้างหน้าแบบไม่ต้องเดิน 🌀💀
 ]]
 UpdateLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 UpdateLabel.Font = Enum.Font.Gotham
@@ -594,6 +594,14 @@ local Scripts = {
 		end,
 		Premium = true
 	},
+	{
+		Name = "TP Walk",
+		ButtonName = "TP Walk",
+		Description = "จะเปลี่ยนจากการเดิน เป็นการพุ่งไปข้างหน้า",
+		Function = function()
+			loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/7e141d8be6e392cda83a4e635febfa58"))()
+		end
+	},
 }
 
 for _, scriptData in ipairs(Scripts) do
@@ -656,7 +664,9 @@ for _, scriptData in ipairs(Scripts) do
 			task.spawn(function()
 				local success, err = pcall(scriptData.Function)
 				if success then
-					if scriptData.Name == "เช็ค FPS" then
+					if scriptData.Name == "TP Walk" then
+						ShowNotify("เปิดระบบ TP Walk แล้ว")
+					elseif scriptData.Name == "เช็ค FPS" then
 						ShowNotify("เช็ค FPS เรียบร้อยแล้ว")
 					elseif scriptData.Name == "ออโต้หยิบของ" then
 						ShowNotify("เปิดระบบออโต้หยิบของแล้ว")
@@ -742,4 +752,4 @@ ToggleButton.MouseButton1Click:Connect(function()
 	end
 end)
 
-print("🔥 TOU HUB (ALL) + FPS Checker & Updated AntiLogger Loaded! 💀🚀")
+print("🔥 TOU HUB (ALL) + TP Walk Added! 🌀💀🚀")
